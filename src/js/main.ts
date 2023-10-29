@@ -17,13 +17,23 @@ gsap.registerPlugin(MotionPathPlugin)
 // const startY = pathBB.top - innerHeight + offsetFromTop;
 // const finishDistance = startY + pathBB.height - offsetFromTop;
 // the animation to use
+$('#refresh').on('click', () => {
+  console.log(`click`)
+  tl.scrollTrigger.refresh()
+  tl.tweenTo(0)
+  ScrollTrigger.refresh()
+})
+window.addEventListener('resize', () => {
+  console.log(`resize`)
+})
 let tl = gsap.timeline({
   scrollTrigger: {
     trigger: '.wrapper',
     pin: false,
     markers: true, // pin the trigger element while active
-    start: '100% 100%', // when the top of the trigger hits the top of the viewport
+    start: '-10% 100%', // when the top of the trigger hits the top of the viewport
     scrub: 1,
+    invalidateOnRefresh: true,
   },
 })
 tl.to('#ball_1', {
